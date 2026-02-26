@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ForestSLAM</title>
 
-  <!-- Fonts + styles from the original template -->
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
@@ -20,301 +21,364 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
-
-  <!-- Optional: smooth anchor scrolling -->
-  <style>
-    html { scroll-behavior: smooth; }
-    /* Lightly emphasize section titles without changing the template’s overall look */
-    .section-title { margin-bottom: 0.75rem; }
-    .pill { display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#f2f2f2; font-size:.9rem; margin:.15rem .25rem 0 0; }
-    .metric { font-size: 110%; }
-    .muted { opacity: 0.85; }
-    .media-caption { font-size: 105%; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .data-collection-carousel img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-    .data-collection-carousel .slider {
-      min-height: 160px;
-    }
-    .data-collection-carousel .slider-item {
-      display: flex;
-      align-items: center;
-    }
-    .data-collection-carousel .item {
-      padding: 0 .35rem;
-    }
-  </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
+<nav class="forest-nav">
+  <div class="container is-max-desktop nav-inner">
+    <a class="brand-mark" href="#top">ForestSLAM</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#datasets">Datasets</a>
+      <a href="#map-merging">Map Merging</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero forest-hero" id="top">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
+      <div class="hero-shell reveal is-visible zoom-on-scroll" data-zoom-max="1.05">
+        <p class="hero-kicker">Carnegie Mellon University · Kantor Lab</p>
+        <h1 class="title is-1 publication-title">Geospatially Grounded SLAM for Invasive Species Localization</h1>
+        <p class="hero-subtitle">3D SLAM + semantic labeling for fast Tree-of-Heaven monitoring at forest scale.</p>
 
-          <h1 class="title is-1 publication-title">
-            Geospatially Grounded SLAM for Invasive Species Localization
-          </h1>
-          <p class="title is-4 muted" style="margin-top: .25rem;">
-            3D SLAM + Semantic labeling of Tree-of-Heaven
-          </p>
+        <div class="hero-chips">
+          <span class="pill">Geospatial Robotics</span>
+          <span class="pill">Semantic Mapping</span>
+          <span class="pill">Invasive Species Response</span>
+        </div>
 
-          <!-- Replace this line with your lab / affiliation -->
-          <div class="is-size-5 publication-authors" style="margin-top: .75rem;">
-            <span class="author-block">Kantor Lab • Robotics Institute • Carnegie Mellon University</span>
-          </div>
+        <div class="publication-authors">
+          <span class="author-block">Kantor Lab • Robotics Institute • Carnegie Mellon University</span>
+        </div>
 
-          <!-- Quick jump links -->
-          <div class="content" style="margin-top: 1rem;">
-            <span class="pill"><a href="#overview">Overview</a></span>
-            <span class="pill"><a href="#method">Method</a></span>
-            <span class="pill"><a href="#results">Results</a></span>
-            <span class="pill"><a href="#datasets">Datasets</a></span>
-            <span class="pill"><a href="#map-merging">Map Merging</a></span>
-          </div>
+        <div class="publication-links cta-group">
+          <span class="link-block">
+            <a target="_blank" href="https://github.com/your-org/your-repo" class="external-link button cta-primary">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a target="_blank" href="assets/forest_slam_project_brief.pdf" class="external-link button cta-secondary">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Project Brief</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a target="_blank" href="assets/poster.pdf" class="external-link button cta-secondary">
+              <span class="icon"><i class="fas fa-image"></i></span>
+              <span>Poster</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a target="_blank" href="assets/demo.mp4" class="external-link button cta-secondary">
+              <span class="icon"><i class="fas fa-play"></i></span>
+              <span>Demo</span>
+            </a>
+          </span>
+        </div>
 
-          <!-- Primary CTAs (edit links) -->
-          <div class="column has-text-centered" style="margin-top: 1rem;">
-            <div class="publication-links">
-              <span class="link-block">
-                <a target="_blank" href="https://github.com/your-org/your-repo"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a target="_blank" href="assets/forest_slam_project_brief.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Project Brief</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a target="_blank" href="assets/poster.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-image"></i></span>
-                  <span>Poster</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a target="_blank" href="assets/demo.mp4"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-play"></i></span>
-                  <span>Demo</span>
-                </a>
-              </span>
-            </div>
-          </div>
-
-          <!-- Hero media (single, clean) -->
-          <div class="content" style="margin-top: 1.25rem;">
-            <video autoplay muted loop playsinline controls style="width: 100%; border-radius: 12px;">
-              <!-- Put your best 15–25s “story” video here -->
-              <source src="assets/videos/herovideo_h264.mp4" type="video/mp4">
-            </video>
-            <p class="media-caption muted" style="margin-top: .5rem;">
-              
-            </p>
-          </div>
-
+        <div class="hero-media-wrap zoom-on-scroll" data-zoom-max="1.14" data-zoom-mode="enter">
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/videos/herovideo_h264.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
-<!-- OVERVIEW -->
-<section class="section" id="overview">
+<section class="section forest-section" id="overview">
   <div class="container is-max-desktop">
-      
-    <div class="columns is-centered has-text-centered reveal">
-      <div class="column">
-        <h2 class="title is-3 section-title">Overview</h2>
-        <p class="subtitle is-5 muted" style="margin-top: .25rem;">
-          Why invasive species mapping matters, what makes it hard, and what this project delivers.
-        </p>
-      </div>
-    </div>
-
-    <div class="columns">
-      <!-- Problem -->
-      <div class="column reveal" data-delay="0">
-        <div class="content">
-          <h3 class="title is-5">Problem</h3>
-          <p style="font-size: 120%;">
-            Invasive tree species such as <b>Tree-of-Heaven</b> (<i>Ailanthus altissima</i>) can outcompete native vegetation, disrupt ecosystems,
-            and increase long-term management costs. Effective control depends on <b>knowing where infestations are</b>
-            and how they spread across large forested areas.
-          </p>
+    <div class="section-shell zoom-on-scroll" data-zoom-max="1.15">
+      <div class="columns is-centered has-text-centered reveal">
+        <div class="column">
+          <h2 class="title is-3 section-title">Overview</h2>
+          <p class="subtitle is-5 muted">Why invasive species mapping matters, what makes it hard, and what this project delivers.</p>
         </div>
       </div>
 
-      <!-- Challenge -->
-      <div class="column reveal" data-delay="300">
-        <div class="content">
-          <h3 class="title is-5">Challenge</h3>
-          <p style="font-size: 120%;">
-            Manual surveys and hand-labeling are labor-intensive and don't scale. Forest conditions also introduce
-            hard robotics issues like under-canopy localization uncertainty and seasonal appearance variation.
-          </p>
-          <!-- <ul style="font-size: 115%;">
-            <li>Large-scale coverage is expensive</li>
-            <li>Labeling is a major bottleneck</li>
-            <li>Under-canopy GNSS + lighting/season changes make detection & localization harder</li>
-          </ul> -->
-        </div>
-      </div>
-
-      <!-- Solution -->
-      <div class="column reveal" data-delay="600">
-        <div class="content">
-          <h3 class="title is-5">Our Solution</h3>
-          <p style="font-size: 120%;">
-            A scalable pipeline that builds high-fidelity <b>3D maps</b> and <b>semantically labels Tree-of-Heaven</b>
-            within them, producing <b>geolocalized</b> outputs as <b>heatmaps and GeoTIFF layers</b> for field action.
-          </p>
-
-          <!-- <div style="margin-top: .75rem;">
-            <p class="metric"><b>3D mapping</b><br><span class="muted">Forest-scale SLAM outputs</span></p>
-            <p class="metric"><b>Semantic labeling</b><br><span class="muted">Tree-of-Heaven detections aggregated in 3D</span></p>
-            <p class="metric"><b>Geospatial products</b><br><span class="muted">GeoTIFF heatmaps + GIS-ready layers</span></p>
-          </div> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Optional: pipeline figure stays close to overview (nice for project sites) -->
-    <!-- <div class="content has-text-centered" style="margin-top: 1.5rem;">
-      <img src="assets/images/pipeline_overview.png" alt="Pipeline overview" style="max-width: 100%; border-radius: 12px;">
-      <p class="muted" style="margin-top: .5rem;">
-        <b>Figure:</b> detection → mapping → grounding → geolocalization (GeoTIFF).
-      </p>
-    </div> -->
-
-  </div>
-</section>
-
-<!-- METHODOLOGY -->
-<section class="section" id="method">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <h2 class="title is-3 section-title has-text-centered reveal">Methodology Overview</h2>
-
-        <div class="content reveal" style="font-size: 125%;">
-          <ol>
-            <li><b>Mapping</b>: build a consistent 3D map with GLIM SLAM / Photogrammetry.</li>
-            <li><b>Segmentation</b>: segment Tree-of-Heaven candidates from RGB images (per-frame predictions).</li>
-            <li><b>Grounding</b>: lift detections into 3D using sensor calibration and SLAM poses; aggregate evidence across views.</li>
-            <li><b>Geolocalization</b>: align to global coordinates using GNSS and export geospatial layers (GeoTIFFs).</li>
-
-          </ol>
-
-    
-
-        </div>
-
-        <div class="columns" style="margin-top: 1.25rem;">
+      <div class="columns">
         <div class="column reveal" data-delay="0">
-            <img src="assets/images/gascola_ucm.png" alt="Mapping" style="width:100%; border-radius: 12px;">
-            <p class="muted" style="margin-top:.4rem;"><b>Mapping:</b> incremental point cloud build.</p>
-          </div>
-          <div class="column reveal" data-delay="200">
-            <img src="assets/images/gascola_detection4.png" alt="Segmentation" style="width:105%; border-radius: 12px;">
-            <p class="muted" style="margin-top:.4rem;"><b>Segmentation:</b> overlay predictions on video frames.</p>
-          </div>
-          
-          <div class="column reveal" data-delay="400">
-            <img src="assets/images/gascola_heatmap.png" alt="GeoTIFF" style="width:86%; border-radius: 12px;">
-            <p class="muted" style="margin-top:.4rem;"><b>Grounding:</b> likelihood heatmap overlaid over 3D map(dark spots correspond to Tree-of-Heaven detections).</p>
+          <div class="content feature-card">
+            <h3 class="title is-5">Problem</h3>
+            <p style="font-size: 120%;">
+              Invasive tree species such as <b>Tree-of-Heaven</b> (<i>Ailanthus altissima</i>) can outcompete native vegetation, disrupt ecosystems,
+              and increase long-term management costs. Effective control depends on <b>knowing where infestations are</b>
+              and how they spread across large forested areas.
+            </p>
           </div>
         </div>
 
+        <div class="column reveal" data-delay="300">
+          <div class="content feature-card">
+            <h3 class="title is-5">Challenge</h3>
+            <p style="font-size: 120%;">
+              Manual surveys and hand-labeling are labor-intensive and don't scale. Forest conditions also introduce
+              hard robotics issues like under-canopy localization uncertainty and seasonal appearance variation.
+            </p>
+          </div>
+        </div>
+
+        <div class="column reveal" data-delay="600">
+          <div class="content feature-card">
+            <h3 class="title is-5">Our Solution</h3>
+            <p style="font-size: 120%;">
+              A scalable pipeline that builds high-fidelity <b>3D maps</b> and <b>semantically labels Tree-of-Heaven</b>
+              within them, producing <b>geolocalized</b> outputs as <b>heatmaps and GeoTIFF layers</b> for field action.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESULTS -->
-<section class="section" id="results">
+<section class="section forest-section" id="method">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3 section-title reveal">Results</h2>
-        <div class="content has-text-justified reveal" style="font-size: 125%;">
-          
+    <div class="section-shell zoom-on-scroll" data-zoom-max="1.1">
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 section-title has-text-centered reveal">Methodology Overview</h2>
 
-          <div class="content" style="margin-top: 1rem;">
-            <h3 class="title is-5">Gascola</h3>
-            <div class="columns is-mobile">
-              <div class="column reveal" data-delay="0">
-                <img src="assets/images/gascola_hits.png" alt="Gascola heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
-              </div>
-              <div class="column reveal" data-delay="200">
-                <img src="assets/images/gascola_tif.png" alt="Gascola GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay on Google Satellite view</p>
-              </div>
-            </div>
-            <p class="muted" style="margin-top: .5rem;">
-              Download sample files:
-              <a href="https://drive.google.com/file/d/1H0JvmQs5Izv7R4_jJ7zuoBJDYvz4gEGc/view?usp=sharing" download>Full Point Cloud</a> ·
-              <a href="https://drive.google.com/file/d/1G3P8euoupQ0lLP2Yclo_oYQqsCWuxTZo/view?usp=sharing" download>Tree-of-Heaven points</a> ·
-              <a href="assets/pointclouds/gascola_geotiff.tif" download>GeoTIFF</a>
+          <div class="content reveal" style="font-size: 125%;">
+            <p>
+              The methodology pairs geometry, semantics, and geospatial alignment into a single end-to-end workflow
+              for actionable Tree-of-Heaven localization.
             </p>
           </div>
 
-          <div class="content" style="margin-top: 1rem;">
-            <h3 class="title is-5">Bike Trail</h3>
-            <div class="columns is-mobile">
+          <div class="method-pairs">
+            <div class="columns is-vcentered method-row reveal" data-delay="0">
+              <div class="column is-6">
+                <div class="method-image-wrap zoom-on-scroll" data-zoom-max="1.06" data-zoom-mode="enter">
+                  <img src="assets/images/gascola_ucm.png" alt="Mapping" style="width:100%; border-radius: 12px;">
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="content method-copy">
+                  <h3 class="title is-5">1. Mapping</h3>
+                  <p>
+                    Build a consistent 3D map with GLIM SLAM / photogrammetry from LiDAR trajectories.
+                    This map provides the structural reference frame for all semantic labels.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-vcentered method-row reveal" data-delay="120">
+              <div class="column is-6">
+                <div class="method-image-wrap zoom-on-scroll" data-zoom-max="1.06" data-zoom-mode="enter">
+                  <img src="assets/images/gascola_detection4.png" alt="Segmentation" style="width:100%; border-radius: 12px;">
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="content method-copy">
+                  <h3 class="title is-5">2. Segmentation</h3>
+                  <p>
+                    Segment Tree-of-Heaven candidates in RGB frames. Per-frame masks provide dense visual evidence
+                    that can be fused across viewpoints instead of relying on single detections.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-vcentered method-row reveal" data-delay="240">
+              <div class="column is-6">
+                <div class="method-image-wrap zoom-on-scroll" data-zoom-max="1.04" data-zoom-mode="enter">
+                  <img src="assets/images/gascola_heatmap.png" alt="Grounding and geolocalization" style="width:100%; border-radius: 12px;">
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="content method-copy">
+                  <h3 class="title is-5">3. Grounding + Geolocalization</h3>
+                  <p>
+                    Lift detections into 3D using calibration + SLAM poses, aggregate confidence, then align to global
+                    coordinates via GNSS for GIS-ready heatmaps and GeoTIFF export.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section forest-section" id="results">
+  <div class="container is-max-desktop">
+    <div class="section-shell">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3 section-title reveal">Results</h2>
+          <div class="content has-text-justified reveal" style="font-size: 125%;">
+
+            <div class="content result-card zoom-on-scroll" data-zoom-max="1.08" data-zoom-mode="enter" style="margin-top: 1rem;">
+              <h3 class="title is-5">Gascola</h3>
+              <div class="columns is-mobile">
+                <div class="column reveal" data-delay="0">
+                  <img src="assets/images/gascola_hits.png" alt="Gascola heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
+                </div>
+                <div class="column reveal" data-delay="200">
+                  <img src="assets/images/gascola_tif.png" alt="Gascola GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay on Google Satellite view</p>
+                </div>
+              </div>
+              <p class="muted" style="margin-top: .5rem;">
+                Download sample files:
+                <a href="https://drive.google.com/file/d/1H0JvmQs5Izv7R4_jJ7zuoBJDYvz4gEGc/view?usp=sharing" download>Full Point Cloud</a> ·
+                <a href="https://drive.google.com/file/d/1G3P8euoupQ0lLP2Yclo_oYQqsCWuxTZo/view?usp=sharing" download>Tree-of-Heaven points</a> ·
+                <a href="assets/pointclouds/gascola_geotiff.tif" download>GeoTIFF</a>
+              </p>
+            </div>
+
+            <div class="content result-card zoom-on-scroll" data-zoom-max="1.08" data-zoom-mode="enter" style="margin-top: 1rem;">
+              <h3 class="title is-5">Bike Trail</h3>
+              <div class="columns is-mobile">
+                <div class="column reveal" data-delay="0">
+                  <img src="assets/images/biketrail_heatmap.png" alt="Bike Trail heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
+                </div>
+                <div class="column reveal" data-delay="200">
+                  <img src="assets/images/biketrail_tif.png" alt="Bike Trail GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay (zoomed in) on Google Satellite view</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="content result-card zoom-on-scroll" data-zoom-max="1.1" data-zoom-mode="enter" style="margin-top: 1.25rem;">
+              <h3 class="title is-5">Fly-throughs</h3>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <div style="position: relative; width: 100%; padding-top: 56.25%;">
+                    <iframe
+                      src="https://drive.google.com/file/d/15aU61NVmfChEeAovg-WEa7TzG_XnnnI5/preview"
+                      title="Chatham Forest fly-through"
+                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;"
+                      allow="autoplay; fullscreen"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Chatham Forest fly-through</p>
+                </div>
+                <div class="column">
+                  <div style="position: relative; width: 100%; padding-top: 56.25%;">
+                    <iframe
+                      src="https://drive.google.com/file/d/1SX1GCkJv8-gmRbs4bwIH7BrDRmRpYspr/preview"
+                      title="Bike Trail fly-through"
+                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;"
+                      allow="autoplay; fullscreen"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Bike Trail fly-through</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section forest-section" id="datasets">
+  <div class="container is-max-desktop">
+    <div class="section-shell zoom-on-scroll" data-zoom-max="1.04">
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 section-title has-text-centered reveal">Datasets</h2>
+          <div class="content reveal" style="font-size: 125%;">
+            <p>
+              We collected custom datasets using a sensor payload with LiDAR, IMU, GNSS, and RGB images.
+              Environments include bike trails, hike trails, urban parks, and forests.
+              Requests for access can be sent to your project email.
+            </p>
+
+            <div class="columns is-multiline is-mobile" style="margin-top: 1rem;">
+              <div class="column is-one-third reveal" data-delay="0">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/gascola.png" alt="Gascola" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Gascola</p>
+                </figure>
+              </div>
+              <div class="column is-one-third reveal" data-delay="150">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/biketrail_zoomed.png" alt="Bike Trail" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Bike Trail</p>
+                </figure>
+              </div>
+              <div class="column is-one-third reveal" data-delay="300">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/flagstaff.png" alt="Flagstaff" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Flagstaff</p>
+                </figure>
+              </div>
+              <div class="column is-one-third reveal" data-delay="450">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/frickpark.png" alt="Frick Park" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Frick Park</p>
+                </figure>
+              </div>
+              <div class="column is-one-third reveal" data-delay="600">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/campus.png" alt="CMU Campus" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">CMU Campus</p>
+                </figure>
+              </div>
+              <div class="column is-one-third reveal" data-delay="750">
+                <figure class="image dataset-tile">
+                  <img src="assets/images/chatam.png" alt="Chatham Forest" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
+                  <p class="muted has-text-centered" style="margin-top: .35rem;">Chatham Forest</p>
+                </figure>
+              </div>
+            </div>
+
+            <p class="muted" style="margin-top: .75rem;">
+              For access, email: <a href="mailto:sszachar@andrew.cmu.edu">sszachar@andrew.cmu.edu</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section forest-section" id="map-merging">
+  <div class="container is-max-desktop">
+    <div class="section-shell zoom-on-scroll" data-zoom-max="1.04">
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 section-title has-text-centered reveal">Extension: Map Merging</h2>
+          <div class="content reveal" style="font-size: 125%;">
+            <p>
+              Under-canopy mapping and above-canopy mapping each capture only part of the forest structure. We merge both
+              views to recover a comprehensive, multi-scale reconstruction that supports consistent geolocation and
+              analysis across the full canopy profile.
+            </p>
+
+            <ul>
+              <li><b>Goal:</b> co-register UCM and ACM into a single aligned map.</li>
+              <li><b>Impact:</b> denser structure, fewer blind spots, and better forest-wide context.</li>
+              <li><b>Outcome:</b> a unified product that supports mapping, inspection, and GIS export.</li>
+            </ul>
+
+            <div class="columns is-mobile" style="margin-top: 1rem;">
               <div class="column reveal" data-delay="0">
-                <img src="assets/images/biketrail_heatmap.png" alt="Bike Trail heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
+                <img src="assets/images/flagstaff_ucm.png" alt="Under-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
               </div>
               <div class="column reveal" data-delay="200">
-                <img src="assets/images/biketrail_tif.png" alt="Bike Trail GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay (zoomed in) on Google Satellite view</p>
+                <img src="assets/images/flagstaff_acm.png" alt="Above-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
               </div>
-            </div>
-          </div>
-
-          <div class="content" style="margin-top: 1.25rem;">
-            <h3 class="title is-5">Fly-throughs</h3>
-            <div class="columns is-mobile">
-              <div class="column">
-                <div style="position: relative; width: 100%; padding-top: 56.25%;">
-                  <iframe
-                    src="https://drive.google.com/file/d/15aU61NVmfChEeAovg-WEa7TzG_XnnnI5/preview"
-                    title="Chatham Forest fly-through"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen>
-                  </iframe>
-                </div>
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Chatham Forest fly-through</p>
-              </div>
-              <div class="column">
-                <div style="position: relative; width: 100%; padding-top: 56.25%;">
-                  <iframe
-                    src="https://drive.google.com/file/d/1SX1GCkJv8-gmRbs4bwIH7BrDRmRpYspr/preview"
-                    title="Bike Trail fly-through"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 12px;"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen>
-                  </iframe>
-                </div>
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Bike Trail fly-through</p>
+              <div class="column reveal" data-delay="400">
+                <img src="assets/images/flagstaff_acm_ucm.jpg" alt="Merged reconstruction" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
               </div>
             </div>
           </div>
@@ -324,121 +388,13 @@
   </div>
 </section>
 
-<!-- DATASETS -->
-<section class="section" id="datasets">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <h2 class="title is-3 section-title has-text-centered reveal">Datasets</h2>
-        <div class="content reveal" style="font-size: 125%;">
-          <p>
-            We collected custom datasets using a sensor payload with LiDAR, IMU, GNSS, and RGB images.
-            Environments include bike trails, hike trails, urban parks, and forests.
-            Requests for access can be sent to your project email.
-          </p>
-
-
-
-          <!-- <div class="columns is-multiline is-mobile" style="margin-top: .75rem;">
-            <div class="column is-half"><b>Gascola</b><br><span class="muted">Mixed canopy, varied understory</span></div>
-            <div class="column is-half"><b>Bike Trails</b><br><span class="muted">Long corridors, repeated structures</span></div>
-            <div class="column is-half"><b>Frick Park</b><br><span class="muted">Urban forest, high traffic</span></div>
-            <div class="column is-half"><b>Chatham</b><br><span class="muted">Seasonal variability, diverse species</span></div>
-          </div> -->
-
-          <div class="columns is-multiline is-mobile" style="margin-top: 1rem;">
-            <div class="column is-one-third reveal" data-delay="0">
-              <figure class="image">
-                <img src="assets/images/gascola.png" alt="Gascola" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Gascola</p>
-              </figure>
-            </div>
-            <div class="column is-one-third reveal" data-delay="150">
-              <figure class="image">
-                <img src="assets/images/biketrail_zoomed.png" alt="Bike Trail" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Bike Trail</p>
-              </figure>
-            </div>
-            <div class="column is-one-third reveal" data-delay="300">
-              <figure class="image">
-                <img src="assets/images/flagstaff.png" alt="Flagstaff" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Flagstaff</p>
-              </figure>
-            </div>
-            <div class="column is-one-third reveal" data-delay="450">
-              <figure class="image">
-                <img src="assets/images/frickpark.png" alt="Frick Park" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Frick Park</p>
-              </figure>
-            </div>
-            <div class="column is-one-third reveal" data-delay="600">
-              <figure class="image">
-                <img src="assets/images/campus.png" alt="CMU Campus" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">CMU Campus</p>
-              </figure>
-            </div>
-            <div class="column is-one-third reveal" data-delay="750">
-              <figure class="image">
-                <img src="assets/images/chatam.png" alt="Chatham Forest" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-                <p class="muted has-text-centered" style="margin-top: .35rem;">Chatham Forest</p>
-              </figure>
-            </div>
-          </div>
-
-          <p class="muted" style="margin-top: .75rem;">
-            For access, email: <a href="mailto:sszachar@andrew.cmu.edu">sszachar@andrew.cmu.edu</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MAP MERGING -->
-<section class="section" id="map-merging">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <h2 class="title is-3 section-title has-text-centered reveal">Extension: Map Merging</h2>
-        <div class="content reveal" style="font-size: 125%;">
-          <p>
-            Under-canopy mapping and above-canopy mapping each capture only part of the forest structure. We merge both
-            views to recover a comprehensive, multi-scale reconstruction that supports consistent geolocation and
-            analysis across the full canopy profile.
-          </p>
-
-          <ul>
-            <li><b>Goal:</b> co-register UCM and ACM into a single aligned map.</li>
-            <li><b>Impact:</b> denser structure, fewer blind spots, and better forest-wide context.</li>
-            <li><b>Outcome:</b> a unified product that supports mapping, inspection, and GIS export.</li>
-          </ul>
-
-          <div class="columns is-mobile" style="margin-top: 1rem;">
-            <div class="column reveal" data-delay="0">
-              <img src="assets/images/flagstaff_ucm.png" alt="Under-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-            </div>
-            <div class="column reveal" data-delay="200">
-              <img src="assets/images/flagstaff_acm.png" alt="Above-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-            </div>
-            <div class="column reveal" data-delay="400">
-              <img src="assets/images/flagstaff_acm_ucm.jpg" alt="Merged reconstruction" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
+<footer class="footer forest-footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column">
         <div class="content has-text-centered">
           <p>
-            Website template borrowed from <a href="https://github.com/vimalabs/vimalabs.github.io">VIMA</a> and <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and <a href="https://github.com/cliport/cliport.github.io">CLIPort</a>.
-
+            Website template borrowed from <a href="https://github.com/vimalabs/vimalabs.github.io">VIMA</a>, <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>, and <a href="https://github.com/cliport/cliport.github.io">CLIPort</a>.
           </p>
         </div>
       </div>

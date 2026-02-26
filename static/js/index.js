@@ -110,5 +110,62 @@ $(document).ready(function() {
       });
     }
 
+    function initScrollZoom() {
+      var elements = document.querySelectorAll('.zoom-on-scroll');
+      if (!elements.length) {
+        return;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function updateZoom() {
+        var viewportHeight = window.innerHeight || 1;
+        var viewportCenter = viewportHeight / 2;
+        var documentHeight = Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight
+        );
+        var atPageBottom = (window.scrollY + viewportHeight) >= (documentHeight - 2);
+        elements.forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          var normalized = 0;
+          if (el.dataset.zoomMode === 'enter') {
+            var progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+            normalized = clamp(progress, 0, 1);
+            if (atPageBottom && rect.top < viewportHeight) {
+              normalized = 1;
+            }
+          } else {
+            var rectCenter = rect.top + (rect.height / 2);
+            var maxDistance = (viewportHeight / 2) + (rect.height / 2);
+            var distance = Math.abs(rectCenter - viewportCenter);
+            normalized = 1 - clamp(distance / maxDistance, 0, 1);
+          }
+          var maxZoom = parseFloat(el.dataset.zoomMax || '1.06');
+          var zoom = 1 + (normalized * (maxZoom - 1));
+          el.style.setProperty('--zoom', zoom.toFixed(3));
+        });
+      }
+
+      var ticking = false;
+      function requestUpdate() {
+        if (ticking) {
+          return;
+        }
+        ticking = true;
+        window.requestAnimationFrame(function() {
+          updateZoom();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      requestUpdate();
+    }
+
     initScrollReveal();
+    initScrollZoom();
 })
