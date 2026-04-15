@@ -258,6 +258,27 @@ a:hover {
   display: block;
 }
 
+.forest-funding {
+  padding-top: 0;
+}
+
+.funding-shell {
+  background: linear-gradient(135deg, rgba(240, 247, 235, 0.96), rgba(249, 252, 247, 0.92));
+}
+
+.funding-copy {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin-bottom: 0;
+}
+
+.funding-logo {
+  max-width: none;
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
 .zoom-on-scroll {
   --zoom: 1;
   transform: scale(var(--zoom));
